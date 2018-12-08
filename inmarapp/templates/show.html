@@ -1,0 +1,41 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>SKU DATA</title>  
+     {% load staticfiles %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
+</head>  
+<body>  
+<table class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>SKU</th>  
+        <th>Name</th>  
+        <th>Location</th>  
+        <th>Department</th>  
+        <th>Category</th>
+        <th>Sub-Category</th>  
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for sku in skudata %}  
+    <tr>  
+        <td>{{ sku.SKU }}</td>  
+        <td>{{ sku.LOCATION }}</td>  
+        <td>{{ sku.DEPARTMENT }}</td>  
+        <td>{{ sku.CATEGORY }}</td>
+        <td>{{ sku.SUBCATEGORY }}</td>  
+        <td>  
+            <a href="/edit/{{ sku.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="/delete/{{ sku.id }}">Delete</a>  
+        </td>  
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table>  
+<br>  
+<br>  
+<center><a href="/emp" class="btn btn-primary">Add New Record</a></center>  
+</body>  
+</html>  
