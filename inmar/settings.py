@@ -39,17 +39,31 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inmarapp',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',        
 ]
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = ('127.0.0.1:8081','127.0.0.1:8080')
 
 ROOT_URLCONF = 'inmar.urls'
 
@@ -75,10 +89,21 @@ WSGI_APPLICATION = 'inmar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {    
+        'ENGINE'    : 'django.db.backends.mysql',
+        'NAME'        : 'inmar',
+        'USER'        : 'root',
+        'PASSWORD'    : '',
+        'HOST'        : '127.0.0.1',
+        'PORT'        : '3306',
     }
 }
 
