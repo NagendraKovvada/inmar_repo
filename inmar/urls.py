@@ -19,9 +19,12 @@ from django.contrib import admin
 from inmarapp import views
 
 urlpatterns = [
-	url(r'^admin/', admin.site.urls),    
+	url(r'^admin/', admin.site.urls),
+    url(r'^rest-auth/', include('rest_auth.urls')),    
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),   
     url(r'^users/', views.UserList.as_view()),
-    # url(r'^users/(?P<SKU>[0-9]+)/$', views.UserDetail.as_view()),
+    url(r'^userslist/(?P<id>[0-9]+)/$', views.UserDetail.as_view()),
+    url(r'^userdel/$', views.UserListView.as_view(), name='userdel'),
     # url(r'^emp/', views.emp),  
     # url(r'^show/',views.show,name='show'),  
     # url(r'^edit/<int:id>', views.edit),  
@@ -29,7 +32,7 @@ urlpatterns = [
     # url(r'^delete/<int:id>', views.destroy),
     url(r'^user$', views.post_list, name='post_list'),
     url(r'^new$', views.post_create, name='post_new'),
-    url(r'^edit/(?P<SKU>\d+)$', views.post_update, name='post_edit'),
-    url(r'^delete/(?P<SKU>\d+)$', views.post_delete, name='post_delete'),      
+    url(r'^edit/(?P<id>\d+)$', views.post_update, name='post_edit'),
+    url(r'^delete/(?P<id>\d+)$', views.post_delete, name='post_delete'),      
 ]
 
